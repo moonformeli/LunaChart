@@ -1,6 +1,13 @@
+if (!window.Luna) {
+    window.Luna = {};
+}
+
 function CanvasChart() {
     var Chart = function(args) {
-        this.init(args);
+        this.param = {};
+
+        this.initParam(args);
+        this.initComponent();
     };
 
     /**
@@ -11,29 +18,13 @@ function CanvasChart() {
      *  height
      *  target - the element that the user wants to draw a chart onto
      */
-    function initParam(args) {
-        var param = {};
+    Chart.prototype.initParam = function(args) {
         var minWidth  = 600;
         var minHeight = 300;
 
-        param.width  = args.width  || minWidth;
-        param.height = args.height || minHeight;
-        param.target = args.target || window;
-
-        return param;
-    }
-
-    Chart.prototype.init = function(args) {
-        console.debug('init');
-
-        this.initProperty(args);
-        this.initComponent();
-    };
-
-    Chart.prototype.initProperty = function(args) {
-        console.debug('initProperty');
-
-        this.param = initParam(args);
+        this.width  = args.width  || minWidth;
+        this.height = args.height || minHeight;
+        this.target = args.target || window;
     };
 
     Chart.prototype.initComponent = function() {
@@ -45,7 +36,7 @@ function CanvasChart() {
         this.setHeight(this.param.height);
 
         this.background.appendChild(this.canvasAxis);
-        this.param.target.appendChild(this.background);
+        this.target.appendChild(this.background);
     };
 
     Chart.prototype.setWidth = function(w) {
@@ -58,7 +49,15 @@ function CanvasChart() {
         this.canvasAxis.style.height = h;
     };
 
+    Chart.prototype.getWidth = function() {
+        return this.width;
+    };
+
+    Chart.prototype.getHeight = function() {
+        return this.height;
+    };
+
     return Chart;
 }
 
-window.LunaChart = CanvasChart();
+window.Luna.LunaCanvas = CanvasChart();
