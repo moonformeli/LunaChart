@@ -1,2 +1,2 @@
 # LunaChart
-Progject LunaChart library
+Project LunaChart library
