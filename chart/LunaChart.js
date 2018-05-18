@@ -1,63 +1,76 @@
-if (!window.Luna) {
-    window.Luna = {};
-}
+(function CanvasChart() {
+    
+    function LunaChart(args) {
+        this.width     = 500;
+        this.height    = 300;
+        this.minWidth  = 500;
+        this.minHeight = 300;
+        this.dom       = document.getElementsByName("body");
 
-function CanvasChart() {
-    var Chart = function(args) {
-        this.param = {};
+        this.init(args);
+    }
 
-        this.initParam(args);
-        this.initComponent();
-    };
+    LunaChart.prototype.init = function(args) {
+        var prop;
+
+        for (prop in args) {
+            this[prop] = args[prop];
+        }
+    }
 
     /**
-     *  Initiate arguments needed to draw a canvas on the target element, where the user wants to draw onto.
-     *  The parameter, args, basically needs these information below.
-     *
-     *  width
-     *  height
-     *  target - the element that the user wants to draw a chart onto
+     * Getter / Setter
      */
-    Chart.prototype.initParam = function(args) {
-        var minWidth  = 600;
-        var minHeight = 300;
-
-        this.width  = args.width  || minWidth;
-        this.height = args.height || minHeight;
-        this.target = args.target || window;
-    };
-
-    Chart.prototype.initComponent = function() {
-        this.background = document.createElement("div");
-        this.canvasAxis = document.createElement("canvas");
-        this.ctxAxis    = this.canvasAxis.getContext("2d");
-
-        this.setWidth(this.param.width);
-        this.setHeight(this.param.height);
-
-        this.background.appendChild(this.canvasAxis);
-        this.target.appendChild(this.background);
-    };
-
-    Chart.prototype.setWidth = function(w) {
-        this.background.style.width = w;
-        this.canvasAxis.style.width = w;
-    };
-
-    Chart.prototype.setHeight = function(h) {
-        this.background.style.height = h;
-        this.canvasAxis.style.height = h;
-    };
-
-    Chart.prototype.getWidth = function() {
+    LunaChart.prototype.getWidth = function() {
         return this.width;
-    };
+    }
 
-    Chart.prototype.getHeight = function() {
+    LunaChart.prototype.getHeight = function() {
         return this.height;
-    };
+    }
 
-    return Chart;
-}
+    LunaChart.prototype.getMinWidth = function() {
+        return this.minWidth;
+    }
 
-window.Luna.LunaCanvas = CanvasChart();
+    LunaChart.prototype.getMinHeight = function() {
+        return this.minHeight;
+    }
+    
+    LunaChart.prototype.getDom = function() {
+        return this.dom;
+    }
+
+    LunaChart.prototype.setWidth = function(w) {
+        this.width = w;
+        return LunaChart;
+    }
+
+    LunaChart.prototype.setHeight = function(h) {
+        this.height = h;
+        return LunaChart;
+    }
+
+    LunaChart.prototype.setMinWidth = function(w) {
+        this.minWidth = w;
+        return LunaChart;
+    }
+
+    LunaChart.prototype.setMinHeight = function(h) {
+        this.minHeight = h;
+        return LunaChart;
+    }
+
+    LunaChart.prototype.setDom = function(id) {
+        var dom = document.getElementById(id);
+
+        if (dom) {
+            this.dom = dom;
+        }
+
+        return LunaChart;
+    }
+
+    return LunaChart;
+
+})();
