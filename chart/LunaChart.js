@@ -1,13 +1,11 @@
-(function CanvasChart() {
+var LunaChart = (function CanvasChart() {
     
     function LunaChart(args) {
-        this.width     = 500;
-        this.height    = 300;
-        this.minWidth  = 500;
-        this.minHeight = 300;
-        this.dom       = document.getElementsByName("body");
+        var ix;
 
-        this.init(args);
+        for (ix in args) {
+            this[ix] = args[ix];
+        }
     }
 
     LunaChart.prototype.init = function(args) {
@@ -36,9 +34,13 @@
     LunaChart.prototype.getMinHeight = function() {
         return this.minHeight;
     }
+
+    LunaChart.prototype.getId = function() {
+        return this.id;
+    }
     
     LunaChart.prototype.getDom = function() {
-        return this.dom;
+        return document.getElementById(this.getId());
     }
 
     LunaChart.prototype.setWidth = function(w) {
