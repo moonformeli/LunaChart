@@ -9,3 +9,4 @@ var chart = new LunaPieChart({
 });
 
 chart.initCanvas();
+chart.draw();

@@ -15,8 +15,12 @@ var LunaPieChart = (function PieChart() {
     LunaPieChart.prototype.constructor = LunaChart;
 
     LunaPieChart.prototype.initCanvas = function() {
+        var dom = this.getDom();
+
         this.canvasBG = document.createElement("canvas");
-        this.canvasBG.setAttribute("style", this.getAttribute(this.getWidth(), this.getHeight()));
+        this.canvasBG.setAttribute("style", this.getWidth(), this.getHeight());
+
+        dom.appendChild(this.canvasBG);
 
         this.ctxBG = this.canvasBG.getContext("2d");
     }
